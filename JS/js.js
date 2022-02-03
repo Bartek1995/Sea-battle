@@ -76,7 +76,6 @@ function checkFieldAvability(check_type, row_value, column_value, required_field
         case 0:
 
             if (column_value >= 0 && column_value <= 9 - (required_fields_for_ship - 1)){
-                document.write('case0scenariusz1' + required_fields_for_ship+'|')
                 for(let a = 0; a < required_fields_for_ship; a++)
                     if (array[generated_row_number][generated_column_number + a] == true){
                         return false
@@ -88,7 +87,6 @@ function checkFieldAvability(check_type, row_value, column_value, required_field
             }
                 
             else if (column_value <= 9 && column_value >= 0 + (required_fields_for_ship - 1)){
-                document.write('case0scenariusz2' + required_fields_for_ship+'|')
                 for(let a = 0; a < required_fields_for_ship; a++)
                     if (array[generated_row_number][generated_column_number - a] == true) {
                         return false
@@ -102,7 +100,6 @@ function checkFieldAvability(check_type, row_value, column_value, required_field
         case 1:
             
             if (row_value >= 0 && row_value <= 9 - (required_fields_for_ship - 1)){
-                document.write('case1scenariusz1' + required_fields_for_ship+'|')
                 for(let a = 0; a < required_fields_for_ship; a++)
                     if (array[generated_row_number + a][generated_column_number] == true){
                         return false
@@ -114,7 +111,6 @@ function checkFieldAvability(check_type, row_value, column_value, required_field
             }
     
             else if (row_value <= 9 && row_value >= 0 + (required_fields_for_ship - 1)){
-                document.write('case1scenariusz2' + required_fields_for_ship+'|')
                 for(let a = 0; a < required_fields_for_ship; a++)
                     if (array[generated_row_number - a][generated_column_number] == true) {
                         return false
