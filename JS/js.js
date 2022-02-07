@@ -5,6 +5,7 @@ var generate_ship_side
 var attack_counter = 0
 var hit_counter = 0
 var miss_counter = 0
+var points_to_win = 3
 // IN COLUMNS GENERATE FIELDS AND SET CLASS
 for(let i= 0; i < 10; i++){
     i_as_string = i.toString();
@@ -39,9 +40,9 @@ function checkGameStateAndModifyButtons(){
         button_new_game.innerHTML = "Nowa gra"
         button_new_game.onclick = newGame
         button_cheat_mode_show_ships.onclick = showShips
-        div = document.getElementById('game-rules')
-        div.appendChild(button_new_game)
-        div.appendChild(button_cheat_mode_show_ships)
+        div_game_rules = document.getElementById('game-rules')
+        div_game_rules.appendChild(button_new_game)
+        div_game_rules.appendChild(button_cheat_mode_show_ships)
     }
 
 
@@ -199,6 +200,8 @@ function attackEnemy(){
         all_hits = document.getElementById('counter-value')
         hit = document.getElementById('hit-counter-value')
         miss = document.getElementById('miss-counter-value')
+        ship_counter = document.getElementById('ship-counter')
+        
 
         if (field == true){
             if (field_object.style.backgroundColor != 'green'){
@@ -206,8 +209,18 @@ function attackEnemy(){
                 alert('Trafiony')
                 attack_counter++
                 hit_counter++
+                points_to_win--
                 all_hits.innerHTML = attack_counter
+                ship_counter.innerHTML = 'Pozostało pól do wygrania = ' + points_to_win
+                if (points_to_win == 0){
+                    alert("WYGRAŁEŚ!")
+                    div_game_rules = document.getElementById('game-rules')
+                    button_start_game = document.getElementById('start-game')
+                    div_game_rules.removeChild(button_start_game)
+
+                }
                 hit.innerHTML = 'Ilość trafień = ' + hit_counter
+                
                 break
             }
             else {
